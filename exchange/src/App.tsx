@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Button from "./components/button/button";
+import InputShow from "./components/input/InputShow";
+import ShowBlock from "./components/showBlock/ShowBlock";
+// import { getCurrencies } from "./api/api";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  // const currencyNow = getCurrencies("USD");
+  // console.log(currencyNow);
   return (
-    <>
+    <section>
+      <h1> Конвертор валют </h1>
+      <InputShow></InputShow>
+      <Button name={"name"}></Button>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Button name={"USD"}></Button>
+        <Button name={"RUB"}></Button>
+        <Button name={"BYN"}></Button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <h2> Результат </h2>
+      <ShowBlock></ShowBlock>
+    </section>
+  );
 }
 
-export default App
+export default App;
