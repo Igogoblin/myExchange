@@ -1,11 +1,22 @@
-interface ButtonProps {
-  name: string;
-  onClick?: () => void;
-}
+// interface ButtonProps {
+//   name: string;
+//   onClick?: () => void;
+// }
 
-const Button: React.FC<ButtonProps> = ({ name }) => {
+const Button = ({
+  name,
+  onClick,
+  selected,
+}: {
+  name: string;
+  onClick: () => void;
+  selected?: boolean;
+}) => {
   return (
-    <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+    <button
+      onClick={onClick}
+      style={{ backgroundColor: selected ? "#ccc" : "#fff" }}
+    >
       {name}
     </button>
   );
