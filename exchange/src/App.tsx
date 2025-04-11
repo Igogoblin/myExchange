@@ -1,9 +1,19 @@
 import "./App.css";
 import InputShow from "./components/input/InputShow";
+import { useEffect } from "react";
+import { getCurrenciesThank } from "./api/getCurrencies";
+import { useAppDispatch } from "./hooks/hooks";
 
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getCurrenciesThank());
+  }, [dispatch]);
   return (
-    <section>
+    <main>
+      <header>
+        сегодня курс: <span className="currencyToday"></span>
+      </header>
       <h1>Конвертор валют</h1>
       <p>
         по умолчанию ввод в суммах, для перевода в другую валюту нажмите
@@ -33,7 +43,7 @@ function App() {
         <div> итого: </div>
         <div className="result"></div>
       </div>
-    </section>
+    </main>
   );
 }
 
