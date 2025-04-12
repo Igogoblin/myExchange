@@ -2,21 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getCurrenciesThank } from "../api/getCurrencies";
 
 type CurrencyItem = {
-  code: string;
-  date: string;
-  diff: string;
-  nominal: string;
-  rate: string;
+  Code: string;
+  Date: string;
+  Diff: string;
+  Nominal: string;
+  Rate: string;
 };
 
 type CurrencyState = {
   currencies: CurrencyItem[];
+  myValue: number;
   loading: boolean;
   error: string | null;
 };
 
 const initialState: CurrencyState = {
   currencies: [],
+  myValue: 0,
   loading: false,
   error: null,
 };
@@ -24,7 +26,11 @@ const initialState: CurrencyState = {
 const currencySlice = createSlice({
   name: "currency",
   initialState,
-  reducers: {},
+  reducers: {
+    setMyValue: (state, action) => {
+      state.myValue = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCurrenciesThank.pending, (state) => {
@@ -43,3 +49,4 @@ const currencySlice = createSlice({
 });
 
 export default currencySlice.reducer;
+export const { setMyValue } = currencySlice.actions;
