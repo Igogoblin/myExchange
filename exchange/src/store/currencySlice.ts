@@ -7,6 +7,7 @@ type CurrencyItem = {
   Diff: string;
   Nominal: string;
   Rate: string;
+  Ccy: string;
 };
 
 type CurrencyState = {
@@ -35,19 +36,21 @@ const currencySlice = createSlice({
       state.myValue = action.payload;
     },
     setCheckCurrency: (state, action) => {
-      // const { value } = action.payload;
       state.checkCurrency = action.payload.value;
-      // if (state.checkCurrency.includes(value)) {
-      //   state.checkCurrency = state.checkCurrency.filter(
-      //     (item) => item !== value
-      //   );
-      // } else {
-      //   state.checkCurrency.push(value);
-      // }
     },
     setUzValue: (state, action) => {
-      //
-      // state.uzValue = action.payload.value
+      if (state.checkCurrency === "UZ") {
+        console.log("UZ working");
+        state.uzValue = action.payload;
+        return;
+      }
+      const result = state.currencies.find((el) => {
+        console.log("el ", el);
+        if (el.Ccy === state.checkCurrency) {
+          return Number(el.Rate) * Number(action.payload);
+        }
+      });
+      state.uzValue = result ? Number(result.Rate) * Number(action.payload) : 0;
     },
   },
   extraReducers: (builder) => {
@@ -68,4 +71,5 @@ const currencySlice = createSlice({
 });
 
 export default currencySlice.reducer;
-export const { setMyValue, setCheckCurrency } = currencySlice.actions;
+export const { setMyValue, setCheckCurrency, setUzValue } =
+  currencySlice.actions;

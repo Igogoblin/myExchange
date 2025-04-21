@@ -5,24 +5,26 @@ type ShowBlockProps = {
   item: string;
 };
 const ShowBlock = ({ item }: ShowBlockProps) => {
-  const currencies = useAppSelector((state) => state.currency.currencies);
-  const myValueNow = useAppSelector((state) => state.currency.myValue);
+  // const currencies = useAppSelector((state) => state.currency.currencies);
+  const state = useAppSelector((state) => state.currency);
+  console.log(state);
   //   const currencyBYN = currencies.find((el) => el.Ccy === "BYN");
   //   const currencyUSD = currencies.find((item) => item.Code === "USD");
   //   const currencyEUR = currencies.find((item) => item.Code === "EUR");
   // const currencyRUB = currencies.find((item) => item.Code === "RUB");
   //   console.log(currencyBYN);
   function showResult(item: string) {
-    switch (item) {
-      case "USD":
-        return (myValueNow * (Number(currencies[0]?.Rate) || 0)).toFixed(2);
-      case "EUR":
-        return (myValueNow * (Number(currencies[1]?.Rate) || 0)).toFixed(2);
-      case "RUB":
-        return (myValueNow * (Number(currencies[2]?.Rate) || 0)).toFixed(2);
-      case "BYN":
-        return (myValueNow * (Number(currencies[11]?.Rate) || 0)).toFixed(2);
+    // const numericItem = Number(item);
+    let result: number = 0;
+    if (state.checkCurrency === "UZ") {
     }
+    state.currencies.find((el) => {
+      if (item === el.Ccy) {
+        result = state.myValue * (Number(el.Rate) || 0);
+      }
+    });
+
+    return result;
   }
   return (
     <div className={style.showValue} key={item}>

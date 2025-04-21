@@ -1,18 +1,36 @@
 import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setMyValue } from "../../store/currencySlice";
+import { setMyValue, setUzValue } from "../../store/currencySlice";
+import { useAppSelector } from "../../hooks/hooks";
 
 const InputShow = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
+  const state = useAppSelector((state) => state.currency);
+  console.log("state ", state);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.replace(/[^0-9]/g, "");
     setValue(inputValue);
   };
   const getValue = () => {
     dispatch(setMyValue(value));
+    dispatch(setUzValue(value));
     console.log("setValue - ", value);
   };
+  // const actualValue = (value: string) => {
+  //   if (state.checkCurrency === "UZ") {
+  //     return value;
+  //   }
+  //   let result: number = 0;
+  //   state.currencies.find((el) => {
+  //     console.log("el |||||||||||||||||||||||||", el.);
+  //     if (state.checkCurrency === el.Ccy) {
+  //       result = state.myValue * (Number(el.Rate) || 0);
+  //     }
+  //     return el;
+  //   });
+  //   return result;
+  // };
   return (
     <div>
       <input
