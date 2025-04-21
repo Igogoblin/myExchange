@@ -44,3 +44,11 @@
 .notActiveBtn {
   border: none;
 }
+.buttonActive {
+  border: 1px solid #646cff;
+  background-color: #adb1fa;
+  /* color: white; */
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  cursor: pointer;
+}

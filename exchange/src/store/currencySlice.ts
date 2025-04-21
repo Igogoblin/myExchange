@@ -12,6 +12,8 @@ type CurrencyItem = {
 type CurrencyState = {
   currencies: CurrencyItem[];
   myValue: number;
+  checkCurrency: string;
+  uzValue: number;
   loading: boolean;
   error: string | null;
 };
@@ -19,6 +21,8 @@ type CurrencyState = {
 const initialState: CurrencyState = {
   currencies: [],
   myValue: 0,
+  checkCurrency: "UZ",
+  uzValue: 0,
   loading: false,
   error: null,
 };
@@ -29,6 +33,21 @@ const currencySlice = createSlice({
   reducers: {
     setMyValue: (state, action) => {
       state.myValue = action.payload;
+    },
+    setCheckCurrency: (state, action) => {
+      // const { value } = action.payload;
+      state.checkCurrency = action.payload.value;
+      // if (state.checkCurrency.includes(value)) {
+      //   state.checkCurrency = state.checkCurrency.filter(
+      //     (item) => item !== value
+      //   );
+      // } else {
+      //   state.checkCurrency.push(value);
+      // }
+    },
+    setUzValue: (state, action) => {
+      //
+      // state.uzValue = action.payload.value
     },
   },
   extraReducers: (builder) => {
@@ -49,4 +68,4 @@ const currencySlice = createSlice({
 });
 
 export default currencySlice.reducer;
-export const { setMyValue } = currencySlice.actions;
+export const { setMyValue, setCheckCurrency } = currencySlice.actions;
