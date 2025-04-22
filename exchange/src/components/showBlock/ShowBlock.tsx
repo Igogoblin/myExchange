@@ -5,22 +5,14 @@ type ShowBlockProps = {
   item: string;
 };
 const ShowBlock = ({ item }: ShowBlockProps) => {
-  // const currencies = useAppSelector((state) => state.currency.currencies);
   const state = useAppSelector((state) => state.currency);
-  console.log(state);
-  //   const currencyBYN = currencies.find((el) => el.Ccy === "BYN");
-  //   const currencyUSD = currencies.find((item) => item.Code === "USD");
-  //   const currencyEUR = currencies.find((item) => item.Code === "EUR");
-  // const currencyRUB = currencies.find((item) => item.Code === "RUB");
-  //   console.log(currencyBYN);
+
   function showResult(item: string) {
-    // const numericItem = Number(item);
     let result: number = 0;
-    if (state.checkCurrency === "UZ") {
-    }
+
     state.currencies.find((el) => {
       if (item === el.Ccy) {
-        result = state.myValue * (Number(el.Rate) || 0);
+        result = parseFloat((state.uzValue / Number(el.Rate)).toFixed(2));
       }
     });
 
