@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getCurrenciesThank } from "./api/getCurrencies";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import InputShow from "./components/input/InputShow";
@@ -27,14 +27,6 @@ function App() {
     dispatch(getCurrenciesThank());
   }, [dispatch]);
   function showResult(item: CurrencyButton) {
-    // const showValue = document.getElementsByClassName(
-    //   `result ${item.value}`
-    // )[0];
-    // if (showValue) {
-    //   showValue.textContent = `${
-    //     state.myValue * (Number(state.currencies[0]?.Rate) || 0)
-    //   }`;
-    // }
     dispatch(setCheckCurrency({ value: item.value }));
   }
 
