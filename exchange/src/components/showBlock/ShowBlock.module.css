@@ -1,5 +1,5 @@
 .showValue {
-  margin: 0 auto;
+  margin: 0 0 0 50px;
   display: flex;
   gap: 10px;
 }

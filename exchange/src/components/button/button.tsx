@@ -1,8 +1,3 @@
-// interface ButtonProps {
-//   name: string;
-//   onClick?: () => void;
-// }
-
 const Button = ({
   name,
   onClick,

@@ -4,17 +4,23 @@ import style from "./ShowBlock.module.css";
 type ShowBlockProps = {
   item: string;
 };
+const currencySymbols: { [key: string]: string } = {
+  USD: " $",
+  EUR: " €",
+  RUB: " ₽",
+  BYN: " Br",
+};
 const ShowBlock = ({ item }: ShowBlockProps) => {
   const state = useAppSelector((state) => state.currency);
 
   function showResult(item: string) {
     let result: number = 0;
+    if (!state || !state.currencies) return null;
 
-    state.currencies.find((el) => {
-      if (item === el.Ccy) {
-        result = parseFloat((state.uzValue / Number(el.Rate)).toFixed(2));
-      }
-    });
+    const currency = state.currencies.find((el) => el.Ccy === item);
+    if (currency) {
+      result = parseFloat((state.uzValue / Number(currency.Rate)).toFixed(2));
+    }
 
     return result;
   }
@@ -23,7 +29,10 @@ const ShowBlock = ({ item }: ShowBlockProps) => {
       <div>курс {item} - </div>
       <div className={`correlation ${item}`}></div>
       <div> итого: </div>
-      <div className={`result ${item}`}>{showResult(item)}</div>
+      <div className={`result ${item}`}>
+        {showResult(item)}
+        {currencySymbols[item] || ""}
+      </div>
     </div>
   );
 };

@@ -45,7 +45,6 @@ const currencySlice = createSlice({
         return;
       }
       const result = state.currencies.find((el) => {
-        console.log("el ", el);
         if (el.Ccy === state.checkCurrency) {
           return Number(el.Rate) * Number(action.payload);
         }
