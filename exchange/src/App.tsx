@@ -63,7 +63,7 @@ function App() {
           </button>
         ))}
       </div>
-      {["USD", "BYN", "RUB"].map((item) => (
+      {["USD", "BYN", "RUB", "UZ"].map((item) => (
         <ShowBlock item={item} key={item} />
       ))}
     </main>
