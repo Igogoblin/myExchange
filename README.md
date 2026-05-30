@@ -1,4 +1,5 @@
 # myExchange
+актуальная конверсия валют
 
 ## deploy by Netlify
 https://currancy.netlify.app/
