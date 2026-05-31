@@ -1,5 +1,6 @@
 # myExchange
 актуальная конверсия валют
+подтягивает сегодняшний курс с официального курса
 
 ## deploy by Netlify
 https://currancy.netlify.app/
